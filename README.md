@@ -1,61 +1,58 @@
-# CareerLaunch API
-
+# 🚀 CareerLaunch API
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)](https://github.com/your-username/careerlaunch)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-A robust, scalable backend for a modern job and internship finder platform.
+🌟 A robust, scalable backend for a modern job and internship finder platform, connecting employers with top talent through a secure, role-based REST API.
 
-## Overview
+## 📋 Overview
+CareerLaunch is a complete Spring Boot application that provides a secure, role-based REST API for a job board. It connects three key user types: 
+👨‍💼 **Applicants** looking for jobs, 
+👔 **Recruiters** posting jobs, and 
+👮 **Admins** moderating the platform. It's built on a clean, decoupled architecture using Spring Security for authentication and MongoDB for a flexible, scalable database.
 
-CareerLaunch is a complete Spring Boot application that provides a secure, role-based REST API for a job board. It connects three key user types: **Applicants** looking for jobs, **Recruiters** posting jobs, and **Admins** moderating the platform. It's built on a clean, decoupled architecture using Spring Security for authentication and MongoDB for a flexible, scalable database.
+## 🎯 Key Features
+* **🔒 Role-Based Access Control (RBAC):** Three distinct roles (`ROLE_APPLICANT`, `ROLE_RECRUITER`, `ROLE_ADMIN`) with granular permissions
+* **🔐 Secure Authentication:** End-to-end authentication and authorization using Spring Security and **JSON Web Tokens (JWT)**
+* **📈 Auto-Login on Register:** Users are automatically authenticated and given a token upon successful registration
+* **📋 Full Job Lifecycle:** Recruiters can perform full CRUD operations on job postings
+* **📊 Application Tracking:** Applicants can apply for jobs and track the status of their applications
+* **📈 Recruiter Dashboard:** Recruiters can view all applicants for their jobs and update application statuses
+* **🛡️ Admin Moderation:** Admins have global permissions to manage users and moderate content
+* **📚 Scalable Database:** Uses MongoDB as a NoSQL database, perfect for handling diverse and large-scale data
 
-## Key Features
+## 🛠️ Tech Stack & Architecture
 
-* **Role-Based Access Control (RBAC):** Three distinct roles (`ROLE_APPLICANT`, `ROLE_RECRUITER`, `ROLE_ADMIN`) with granular permissions
-* **Secure Authentication:** End-to-end authentication and authorization using Spring Security and **JSON Web Tokens (JWT)**
-* **Auto-Login on Register:** Users are automatically authenticated and given a token upon successful registration
-* **Full Job Lifecycle:** Recruiters can perform full CRUD operations on job postings
-* **Application Tracking:** Applicants can apply for jobs and track the status of their applications
-* **Recruiter Dashboard:** Recruiters can view all applicants for their jobs and update application statuses
-* **Admin Moderation:** Admins have global permissions to manage users and moderate content
-* **Scalable Database:** Uses MongoDB as a NoSQL database, perfect for handling diverse and large-scale data
+### 📦 Tech Stack
+* **🔷 Java 17+**
+* **🚀 Spring Boot 3.x**
+* **🔒 Spring Security 6.x:** For JWT-based authentication and method-level security (`@PreAuthorize`)
+* **📱 Spring Data MongoDB:** For repository and database interaction
+* **🌐 MongoDB Atlas:** Cloud-hosted NoSQL database
+* **💼 Lombok:** To reduce boilerplate code
+* **📦 Maven:** For dependency management
+* **🔑 jjwt:** Java library for creating and validating JSON Web Tokens
 
-## Tech Stack & Architecture
-
-### Tech Stack
-
-* **Java 17+**
-* **Spring Boot 3.x**
-* **Spring Security 6.x:** For JWT-based authentication and method-level security (`@PreAuthorize`)
-* **Spring Data MongoDB:** For repository and database interaction
-* **MongoDB Atlas:** Cloud-hosted NoSQL database
-* **Lombok:** To reduce boilerplate code
-* **Maven:** For dependency management
-* **jjwt:** Java library for creating and validating JSON Web Tokens
-
-### Architecture
-
+### 🏗️ Architecture
 The application follows a standard **3-Layer Architecture** for a clean separation of concerns:
 
-1. **Controller Layer**
+1. **📱 Controller Layer**
    - Handles all incoming HTTP requests
    - Validates request bodies using DTOs
    - Maps requests to the appropriate service methods
    - Serializes service responses to JSON
 
-2. **Service Layer**
+2. **🧮 Service Layer**
    - Contains all business logic
    - Coordinates between repositories
    - Handles data validation, manipulation, and transformations
    - Throws business-specific exceptions
    - Manages authentication logic (`AuthService`)
 
-3. **Repository Layer**
+3. **📂 Repository Layer**
    - Defines interfaces that extend Spring Data's `MongoRepository`
    - Handles all database query logic
 
-## Configuration
-
+## 📝 Configuration
 To run the project locally, you must provide configuration in `src/main/resources/application.yml`:
 
 ```yml
@@ -77,7 +74,7 @@ app:
     expiration-ms: 86400000
 ```
 
-## API Documentation
+## 📱 API Documentation
 
 All requests and responses are in JSON format. A successful authentication (login/register) returns a JWT token which must be included in the header for all secured endpoints:
 
@@ -85,7 +82,7 @@ All requests and responses are in JSON format. A successful authentication (logi
 Authorization: Bearer <your-jwt-token>
 ```
 
-### Authentication (Public)
+### 📝 Authentication (Public)
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
@@ -103,22 +100,14 @@ Authorization: Bearer <your-jwt-token>
 }
 ```
 
-#### Login Request Body
-```json
-{
-  "email": "sonia.applicant@example.com",
-  "password": "password123"
-}
-```
-
-### Public Job Endpoints (No Auth Required)
+### 🌐 Public Job Endpoints (No Auth Required)
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
 | `GET` | `/api/jobs` | Get a list of all active job postings |
 | `GET` | `/api/jobs/{jobId}` | Get the details for a single job by its ID |
 
-### Applicant Endpoints
+### 👨‍🎓 Applicant Endpoints
 
 Requires `ROLE_APPLICANT` token.
 
@@ -127,7 +116,7 @@ Requires `ROLE_APPLICANT` token.
 | `POST` | `/api/jobs/{jobId}/apply` | Submits an application for a specific job |
 | `GET` | `/api/applications/my-applications` | Returns a list of all applications submitted by the user |
 
-### Recruiter Endpoints
+### 👔 Recruiter Endpoints
 
 Requires `ROLE_RECRUITER` token.
 
@@ -150,16 +139,7 @@ Requires `ROLE_RECRUITER` token.
 }
 ```
 
-#### Application Status Update
-```json
-{
-  "status": "UNDER_REVIEW"
-}
-```
-
-Valid statuses: `APPLIED`, `VIEWED`, `UNDER_REVIEW`, `REJECTED`, `HIRED`
-
-### Admin Endpoints
+### 🛡️ Admin Endpoints
 
 Requires `ROLE_ADMIN` token.
 
