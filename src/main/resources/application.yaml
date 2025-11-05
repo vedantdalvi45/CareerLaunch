@@ -4,14 +4,14 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb+srv://vedalvi16:2Z4oWRFwrNMvKuue@cluster0.7wcnlva.mongodb.net/
+      uri:  ${DATASOURCE_URL}
       database: CareerLaunch
 
 app:
   jwt:
     # This MUST be kept secret.
     # Generate a secure 64-byte, Base64-encoded secret.
-    secret: bXluYW1laXNqYW1lc2JvbmRiYW5kaWFtYnJpdGlzaHNweWFuZGlsaWtlYmFzZWJhbGxzYW5kcGFzc3dvcmRpc3Bhc3N3b3Jk
+    secret: ${JWT_SECRET}
 
     # Token expiration time in milliseconds (86400000 = 24 hours)
-    expiration-ms: 86400000
+    expiration-ms: ${JWT_EXPIRATION}
