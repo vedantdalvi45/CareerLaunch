@@ -148,3 +148,38 @@ Requires `ROLE_ADMIN` token.
 | `GET` | `/api/admin/users` | Returns a list of all users in the database |
 | `DELETE` | `/api/admin/users/{userId}` | Deletes any user by their ID |
 | `DELETE` | `/api/admin/jobs/{jobId}` | Deletes any job by its ID (for moderation)
+
+
+# CareerLaunch Setup Guide
+
+## Prerequisites
+🔧 Java 17+
+📦 Maven
+📋 Git
+🔍 IDE (IntelliJ/VS Code)
+📱 API Client (Postman/Insomnia)
+
+## Step 1: MongoDB Setup
+🌐 Create MongoDB Atlas account
+🔧 Create free cluster
+👤 Create database user
+🔒 Whitelist your IP
+🔗 Get connection string
+
+## Step 2: Configure App
+📂 Clone repository
+🔧 Open in IDE
+🔗 Add MongoDB connection string to 
+
+
+## Step 3: Run App
+🔧 Option 1: Run from IDE
+🔧 Option 2: Terminal:
+```bash
+mvn clean install
+mvn spring-boot:run
+```
+
+## Step 4: Test API
+📱 Use Postman to test endpoints
+🔒 Use JWT token from login response
