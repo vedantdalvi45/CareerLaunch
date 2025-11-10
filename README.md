@@ -1,6 +1,4 @@
 # 🚀 CareerLaunch API
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)](https://github.com/your-username/careerlaunch)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 🌟 A robust, scalable backend for a modern job and internship finder platform, connecting employers with top talent through a secure, role-based REST API.
 
